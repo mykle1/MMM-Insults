@@ -1,0 +1,85 @@
+/* Copy and paste any or all of these css entries into your custom.css file inside your
+ * css folder. The functions are annotated to make things as easy as possible for you.
+ * Use any colors you want! Go to - "http://htmlcolorcodes.com/color-picker/"
+ * Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
+ */
+
+ /* Got this code from codepen.io */
+
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
+
+ body {
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 600;
+   font-size: 40px;
+ }
+
+ .MMM-1 .text {
+   position: absolute;
+   width: 450px;
+   left: 50%;
+   margin-left: -225px;
+   height: 40px;
+   top: 50%;
+   margin-top: -20px;
+ }
+
+ /* I assume the "p" will change here when the HTML is inserted in the js file */
+ .MMM-1 p {
+   display: inline-block;
+   vertical-align: top;
+   margin: 0;
+ }
+
+ .MMM-1 .word {
+   position: absolute;
+   width: 220px;
+   opacity: 0;
+ }
+
+ .MMM-1 .letter {
+   display: inline-block;
+   position: relative;
+   float: left;
+   transform: translateZ(25px);
+   transform-origin: 50% 50% 25px;
+ }
+
+ .MMM-1 .letter.out {
+   transform: rotateX(90deg);
+   transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+ }
+
+ .MMM-1 .letter.behind {
+   transform: rotateX(-90deg);
+ }
+
+ .MMM-1 .letter.in {
+   transform: rotateX(0deg);
+   transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ }
+
+ .MMM-1 .wisteria {
+   color: #8e44ad;
+ }
+
+ .MMM-1 .belize {
+   color: #2980b9;
+ }
+
+ .MMM-1 .pomegranate {
+   color: #c0392b;
+ }
+
+ .MMM-1 .green {
+   color: #16a085;
+ }
+
+ .MMM-1 .midnight {
+   color: #2c3e50;
+ }
+
+
+.MMM-1 img {
+  max-width: 10%;
+}
