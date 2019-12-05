@@ -47,7 +47,7 @@ Module.register("MMM-1", {
          var wordArray = [];
          var currentWord = 0;
 
-         words[currentWord].style.opacity = 1;
+         words[currentWord].style.opacity = 1; // error in console "style"
          for (var i = 0; i < words.length; i++) {
            splitLetters(words[i]);
          }
@@ -65,6 +65,8 @@ Module.register("MMM-1", {
          setInterval(changeWord, 4000);
 
          // setTimeout
+
+         this.updateDom(); // Don't know how to update just once :-(
 
         return wrapper;
     },
