@@ -68,6 +68,7 @@ console.log(this.Insults);
 			temp+="</p></div>";  // close the P and div started with the tempplate and static text, only once
 			console.log("new wrapper text="+temp);
 			this.wrapper.innerHTML=temp;
+
 			// get all the 'word' class elements from  our content template
 			this.words = this.wrapper.getElementsByClassName("word");
 			// break them into letters (better than hand coding app the spans!,
