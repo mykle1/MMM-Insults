@@ -13,7 +13,7 @@ Module.register("MMM-Insults", {
 		updateInterval: 60 * 60 * 1000, // set in config.js
 		animationSpeed: 0,
 	},
-
+	Insults:null,
 	wrapper: null,
 	currentWord :0,
 	timer:null,
@@ -33,7 +33,7 @@ Module.register("MMM-Insults", {
 				Log.info("Starting module: " + this.name);
         this.getInsults();
 				// Set locale.
-				this.Insults = {};
+				//this.Insults = null;
 				this.activeItem = 0;
 				this.rotateInterval = null;
 
@@ -51,10 +51,23 @@ console.log(this.Insults);
 		if(this.wrapper==null){
 			this.wrapper = document.createElement("div");
 			this.wrapper.id="wrapper";
-			for ( var i = 0; i < this.Insults.length; i++) {
-			this.wrapper.innerHTML=this.htmlTemplate1 + "<p>" + this.config.static + "</p><p>"+ this.Insults[i] + "</p></div>";
-console.log(this.wrapper.innerHTML=this.htmlTemplate1 + "<p>" + this.config.static + "</p><p>"+ this.Insults[i] + "</p></div>");
-		 }
+		}
+		if(this.Insults){
+			let temp = this.htmlTemplate1;  
+			// add the static text 
+			temp+="<p>" + this.config.static + "</p><p>"  // set initial part of output, "john is"
+			// loop thru the insult file data
+			for ( let each_insult of this.Insults) { 
+		           // append each insult to the div innerHtml 
+			   temp+= each_insult;   // note += (add value to existing value) vs = (set to this value)
+				   
+				   	//in the json file u have "insult": "the text", that is name:value, u have to use the name
+				   	// "insult": "<span class=\"word wisteria\"> a world class moron.</span>"
+				    
+		  } 
+			temp+="</p></div>";  // close the P and div started with the tempplate and static text, only once
+			console.log("new wrapper text="+temp);
+			this.wrapper.innerHTML=temp;
 			// get all the 'word' class elements from  our content template
 			this.words = this.wrapper.getElementsByClassName("word");
 			// break them into letters (better than hand coding app the spans!,
@@ -155,7 +168,8 @@ console.log(this.wrapper.innerHTML=this.htmlTemplate1 + "<p>" + this.config.stat
 				//	}
 					this.updateDom(this.config.animationSpeed);
 			}
-			this.updateDom(this.config.initialLoadDelay);
+			else
+			 this.updateDom(this.config.initialLoadDelay);
 	}
 
 });
