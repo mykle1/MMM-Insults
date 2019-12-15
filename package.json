@@ -1,0 +1,23 @@
+{
+  "name": "mmm-insults",
+  "version": "1.0.0",
+  "main": "MMM-Insults.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdetweil/MMM-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdetweil/MMM-1/issues"
+  },
+  "homepage": "https://github.com/sdetweil/MMM-1#readme",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {},
+  "description": ""
+}

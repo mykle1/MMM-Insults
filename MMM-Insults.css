@@ -1,0 +1,69 @@
+/* Copy and paste any or all of these css entries into your custom.css file inside your
+ * css folder. The functions are annotated to make things as easy as possible for you.
+ * Use any colors you want! Go to - "http://htmlcolorcodes.com/color-picker/"
+ * Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
+ */
+
+ .MMM-Insults {
+   margin-left: -298px;
+ }
+
+ .MMM-Insults p {
+   display: inline-block;
+   vertical-align: top;
+   font-size: 64px; /* This is for text size of this module */
+ }
+
+ .MMM-Insults .word {
+   position: absolute;
+   /* width: 220px; */
+   opacity: 0;
+   margin-left: 0px;
+ }
+
+ .MMM-Insults .letter {
+   display: inline-block;
+   position: relative;
+   float: left;
+   transform: translateZ(25px);
+   transform-origin: 50% 50% 25px;
+ }
+
+ .MMM-Insults .letter.out {
+   transform: rotateX(90deg);
+   transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+ }
+
+ .MMM-Insults .letter.behind {
+   transform: rotateX(-90deg);
+ }
+
+ .MMM-Insults .letter.in {
+   transform: rotateX(0deg);
+   transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ }
+
+ .MMM-Insults .wisteria {
+   color: #8e44ad;
+ }
+
+ .MMM-Insults .belize {
+   color: #2980b9;
+ }
+
+ .MMM-Insults .pomegranate {
+   color: #c0392b;
+ }
+
+ .MMM-Insults .green {
+   color: #16a085;
+ }
+
+ .MMM-Insults .midnight {
+   color: #2c3e50;
+ }
+
+
+.MMM-Insults img {
+  max-width: 10%;
+}
