@@ -18,6 +18,8 @@ module.exports = NodeHelper.create({
         if (fs.existsSync(this.path)) {
             var temp = JSON.parse(fs.readFileSync(this.path, 'utf8'));
                 this.Insults = temp;
+                // send data to module
+                this.sendSocketNotification('INSULTS_RESULT', temp);
         }
         console.log("Starting module: " + this.name);
     },
