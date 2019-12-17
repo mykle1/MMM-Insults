@@ -1,6 +1,6 @@
 ## MMM-Insults
 
-Not meant to compete with the default compliments module. It more about the transition.
+Not meant to compete with the default compliments module. It's more about the transition.
 
 ## Piss off your wife or girlfriend or anyone you like (or dislike)
 
