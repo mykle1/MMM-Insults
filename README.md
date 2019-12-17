@@ -10,13 +10,22 @@ Not meant to compete with the default compliments module. It more about the tran
 
 ## Why would you use this module?
 
-* As a motivation tool.
+* As a motivational tool.
 * You want a divorce.
+* Fuck with your friends.
 * I begged you. **:^)**
 
-## Examples
+## You'll have to install it to see the transition
+
+### Examples
 
 ![](images/1.png)
+
+![](images/2.png)
+
+![](images/3.png)
+
+![](images/4.png)
 
 ## Installation and requirements
 
