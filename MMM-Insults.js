@@ -13,19 +13,20 @@ Module.register("MMM-Insults", {
 		updateInterval: 60 * 60 * 1000, // set in config.js
 		animationSpeed: 0,
 	},
+	activeInsult:0,
 	Insults:null,
 	wrapper: null,
-	currentWord :0,
+	currentphrase :0,
 	timer:null,
-	words:null,
+	phrases:null,
 	first:true,
-	htmlTemplate1:"<div class=\"text\">",
+	htmlTemplate1:"<div class=\"static\">",
 	htmlTemplate2: 	"<p> "+
-				"<span class=\"word wisteria\"> a world class moron.</span>"+
-				"<span class=\"word belize\"> a bumbling idiot.</span>"+
-				"<span class=\"word pomegranate\"> a dirty mutant.</span>"+
-				"<span class=\"word green\"> a drooling retard.</span>"+
-				"<span class=\"word midnight\"> so fucking cheap.</span>"+
+				"<span class=\"phrase wisteria\"> a world class moron.</span>"+
+				"<span class=\"phrase belize\"> a bumbling idiot.</span>"+
+				"<span class=\"phrase pomegranate\"> a dirty mutant.</span>"+
+				"<span class=\"phrase green\"> a drooling retard.</span>"+
+				"<span class=\"phrase midnight\"> so fucking cheap.</span>"+
 			"</p>"+
 		"</div>",
 
@@ -53,61 +54,69 @@ console.log(this.Insults);
 			this.wrapper.id="wrapper";
 		}
 		if(this.Insults){
-			let temp = this.htmlTemplate1;  
-			// add the static text 
-			temp+="<p>" + this.config.static + "</p><p>"  // set initial part of output, "john is"
+			let temp = this.htmlTemplate1;
+			// add the static text
+			temp+=this.config.static   // set initial part of output, "john is"
 			// loop thru the insult file data
-			for ( let each_insult of this.Insults) { 
-		           // append each insult to the div innerHtml 
+		//	temp+=this.Insults[this.activeInsult++]
+			for ( let each_insult of this.Insults) {
+		           // append each insult to the div innerHtml
 			   temp+= each_insult;   // note += (add value to existing value) vs = (set to this value)
-				   
+
 				   	//in the json file u have "insult": "the text", that is name:value, u have to use the name
-				   	// "insult": "<span class=\"word wisteria\"> a world class moron.</span>"
-				    
-		  } 
-			temp+="</p></div>";  // close the P and div started with the tempplate and static text, only once
+				   	// "insult": "<span class=\"phrase wisteria\"> a world class moron.</span>"
+
+		  }
+			temp+="</div></div>";  // close the P and div started with the tempplate and static text, only once
+			if( this.activeInsult>=this.Insults.length)
+				this.activeInsult=0
 			console.log("new wrapper text="+temp);
 			this.wrapper.innerHTML=temp;
 
-			// get all the 'word' class elements from  our content template
-			this.words = this.wrapper.getElementsByClassName("word");
+			// get all the 'phrase' class elements from  our content template
+			this.phrases = this.wrapper.getElementsByClassName("word");
 			// break them into letters (better than hand coding app the spans!,
-			// change the word text in the template and all else works the same)
-			for (let word of  this.words) {
-				this.splitLetters(word);
+			// change the phrase text in the template and all else works the same)
+			for (let phrase of  this.phrases) {
+				this.splitLetters(phrase);
 			}
-			// override the class stype for the 1st word so it will be visible
-			this.words[this.currentWord].style.opacity = 1;
-			// start the word change timer
-			this.timer=setInterval(()=>{this.changeWord(this.words.length>0)}, this.config.newInsult); //4000);
+			// override the class stype for the 1st phrase so it will be visible
+			this.phrases[this.currentphrase].style.opacity = 1;
+			this.phrases[this.currentphrase].style.display="inline-block"
+			// start the phrase change timer
+			this.timer=setInterval(()=>{this.changephrase(this.phrases.length>0)}, this.config.newInsult); //4000);
 		}
 
 		return this.wrapper;
 	},
 
-	changeWord: function (haveWords) {
+	changephrase: function (havephrases) {
 		// be careful until the html is inserted in the dom
-		if(haveWords){
-			// get the current 'word' element
-			var cw = this.words[this.currentWord];
+		if(havephrases){
+			// get the current 'phrase' element
+			var cp = this.phrases[this.currentphrase];
 			// and the next one (could wrap around to the start
-			var nw = (this.currentWord == this.words.length-1 )? this.words[0] : this.words[this.currentWord+1];
-			// loop thru the letters (words 'children' now)
-			for (var i = 0; i < cw.childElementCount; i++) {
+			var np = (this.currentphrase == this.phrases.length-1 )? this.phrases[0] : this.phrases[this.currentphrase+1];
+			// loop thru the letters (phrases 'children' now)
+			for (var i = 0; i < cp.childElementCount; i++) {
 				// moving them out of display
-				this.animateLetterOut(cw, i);
+				this.animateLetterOut(cp, i);
 			}
 
-			// make the letters parent, the 'word',  object visible, altho it has no conetnt of its own
-			nw.childNodes[0].parentElement.style.opacity = 1;
-			// loop thru the next word letters
-			for (var i = 0; i < nw.childElementCount; i++) {
+			np.style.display="inline-block";
+
+			// make the letters parent, the 'phrase',  object visible, altho it has no conetnt of its own
+			np.childNodes[0].parentElement.style.opacity = 1;
+			// loop thru the next phrase letters
+			for (var i = 0; i < np.childElementCount; i++) {
 				// make them visible
-				nw.childNodes[i].className = "letter behind";
-				this.animateLetterIn(nw, i);
+				np.childNodes[i].className = "letter behind";
+				this.animateLetterIn(np, i);
 			}
-			// adjust the current word index, for next cycle
-			this.currentWord = (this.currentWord == this.words.length-1) ? 0 : this.currentWord+1;
+			if(cp!=np)
+			cp.style.display="none";
+			// adjust the current phrase index, for next cycle
+			this.currentphrase = (this.currentphrase == this.phrases.length-1) ? 0 : this.currentphrase+1;
 		}
 	},
 
@@ -124,13 +133,13 @@ console.log(this.Insults);
 		}, 340+(i*80));
 	},
 
-	// create individual span elements for each character of the word,
+	// create individual span elements for each character of the phrase,
 	// so we can manage each separately
-	splitLetters: function (word) {
-		// get the text of the word (only there 1st time)
-		var content = word.innerHTML;
+	splitLetters: function (phrase) {
+		// get the text of the phrase (only there 1st time)
+		var content = phrase.innerHTML;
 		// clear the hard coded text
-		word.innerHTML = "";
+		phrase.innerHTML = "";
 		// loop thru the letters
 		for (var i = 0; i < content.length; i++) {
 			// make a span for each
@@ -138,8 +147,8 @@ console.log(this.Insults);
 			letter.className = "letter";
 			// save the character for the span
 			letter.innerHTML = content.charAt(i)==' '?'&nbsp':content.charAt(i) ;
-			// add the span to the word element
-			word.appendChild(letter);
+			// add the span to the phrase element
+			phrase.appendChild(letter);
 		}
 	},
 
