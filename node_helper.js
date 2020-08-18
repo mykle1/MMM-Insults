@@ -19,7 +19,7 @@ module.exports = NodeHelper.create({
             var temp = JSON.parse(fs.readFileSync(this.path, 'utf8'));
                 this.Insults = temp
                 // send data to module
-								console.log("json="+JSON.stringify(temp));
+						//		console.log("json="+JSON.stringify(temp));
                 this.sendSocketNotification('INSULTS_RESULT', temp);
         }
         console.log("Starting module: " + this.name);

@@ -46,8 +46,7 @@ Module.register("MMM-Insults", {
 
 	// Override dom generator.
 	getDom: function() {
-
-console.log(this.Insults);
+// console.log(this.Insults);
 		// only create wrapper once
 		if(this.wrapper==null){
 			this.wrapper = document.createElement("div");
@@ -155,7 +154,7 @@ console.log(this.Insults);
 	processInsults: function(data) {
 			this.Insults = data;
 			this.loaded = true;
-      console.log(this.Insults)
+      // console.log(this.Insults)
 	},
 
 	// scheduleCarousel: function() {
