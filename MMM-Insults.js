@@ -69,7 +69,7 @@ Module.register("MMM-Insults", {
 			temp+="</div></div>";  // close the P and div started with the tempplate and static text, only once
 			if( this.activeInsult>=this.Insults.length)
 				this.activeInsult=0
-			console.log("new wrapper text="+temp);
+		//	console.log("new wrapper text="+temp);
 			this.wrapper.innerHTML=temp;
 
 			// get all the 'phrase' class elements from  our content template
